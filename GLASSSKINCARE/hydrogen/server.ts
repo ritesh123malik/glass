@@ -78,13 +78,16 @@ async function handleRequest(request: Request, envArg?: EnvLike) {
     );
   }
 
+  const storeDomain = env.PUBLIC_STORE_DOMAIN || "mock-glassskincare.myshopify.com";
+  const publicStorefrontToken = env.PUBLIC_STOREFRONT_API_TOKEN || "3b8f142c90e7145a90d8e21c90a1b2c3";
+
   const { storefront } = createStorefrontClient({
     cache: await resolveCache(),
     waitUntil: noopWaitUntil,
     i18n: { language: "EN", country: "US" },
-    publicStorefrontToken: env.PUBLIC_STOREFRONT_API_TOKEN,
+    publicStorefrontToken,
     privateStorefrontToken: env.PRIVATE_STOREFRONT_API_TOKEN,
-    storeDomain: env.PUBLIC_STORE_DOMAIN,
+    storeDomain,
     storefrontId: env.PUBLIC_STOREFRONT_ID,
     storefrontHeaders: {
       requestGroupId: null,
