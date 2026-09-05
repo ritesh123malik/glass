@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Glass Skincare — design tokens
+ * Default theme: iOS-style glassmorphism (cream / sand / tan / brown / charcoal)
+ * Opt-in theme : `.neobrutalism` ancestor swaps to magenta / yellow / sky / mint / blue / accent
+ *
+ * Both themes share the same gray-50 (#FDFCFB) page background to avoid
+ * the "two bg colors" conflict between body and main wrappers.
+ */
+:root {
+  /* Glass Skincare — matches glasskin-storefront.vercel.app palette */
+  --bg-page: #FFF6EB;
+  --bg-glass: rgba(255, 246, 235, 0.95);
+  --bg-glass-strong: rgba(255, 246, 235, 0.98);
+  --border-glass: rgba(38, 31, 26, 0.12);
+  --text-primary: #261F1A;
+  --text-secondary: #8B7355;
+  --text-muted: #C9A98A;
+  --accent: #FF7700;
+  --accent-2: #FF9A3D;
+
+  --color-cream: #FFF6EB;
+  --color-sand: #F5E6D3;
+  --color-tan: #FFCD78;
+  --color-brown: #261F1A;
+  --color-charcoal: #261F1A;
+  --color-white: #FFFFFF;
+
+  --shadow-glass: 0 8px 32px 0 rgba(38, 31, 26, 0.10);
+  --shadow-glass-lg: 0 12px 48px 0 rgba(38, 31, 26, 0.14);
+  --shadow-play: 4px 4px 0px 0px rgba(26, 26, 26, 1);
+
+  --header-bg: rgba(255, 246, 235, 0.85);
+  --footer-bg: rgba(255, 246, 235, 0.85);
+
+  /* Font families */
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-display: "Archivo Black", system-ui, sans-serif;
+  --font-sans: "Raleway", ui-rounded, "Helvetica Neue", sans-serif;
+  --font-rounded: "Baloo 2", ui-rounded, sans-serif;
+}
+
+.neobrutalism {
+  /* Neobrutalism opt-in palette */
+  --bg-page: #FDFBF7;
+  --bg-glass: #FFFFFF;
+  --bg-glass-strong: #FFFFFF;
+  --border-glass: #1A1A1A;
+  --text-primary: #1A1A1A;
+  --text-secondary: #1A1A1A;
+  --text-muted: #FF4500;
+
+  --shadow-glass: 4px 4px 0px 0px rgba(26, 26, 26, 1);
+  --shadow-glass-lg: 6px 6px 0px 0px rgba(26, 26, 26, 1);
+  --shadow-play: 4px 4px 0px 0px rgba(26, 26, 26, 1);
+
+  --header-bg: #FDFBF7;
+  --footer-bg: #FFC0CB;
+
+  /* Fonts stay the same in neobrutalism (display = Cormorant), but consumers
+     may want bold-up; neobrutalism overrides come via Tailwind utilities */
+}
+
+/* Base */
+html,
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 300;
+}
+
+body {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+/* Glass surface primitives (referenced by Tailwind `.glass-card` etc, also
+   available as plain CSS for any future component that wants them) */
+.glass-surface {
+  background-color: var(--bg-glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--border-glass);
+}
+
+.glass-surface-strong {
+  background-color: var(--bg-glass-strong);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid var(--border-glass);
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(201, 169, 138, 0.3);
+  color: var(--text-primary);
+}
+
+/* Smooth scroll for in-page anchors */
+html {
+  scroll-behavior: smooth;
+}
